@@ -2,25 +2,19 @@ import data from '../data/dummy.db.json'
 import STATUS from './constants';
 import {updateItemGroup} from '../util/util';
 
-const StatusText = (index) => {
-    return STATUS[index];
-}
+const getNextValue = (group) => {
 
-const getNextValue = (group, setData) => {
+    let availables = group.list.filter(_=> _.covered === true);
 
-    let availables = group.list.filter(_=> _.Status==global.currentStatus);
-
-    // group.recalled ++;
-    // group.unknowed --;
-    // updateItemGroup(group, setData);
-
-    // if (group.unknowed ==0 || availables.length==0)
-    //     return null;
-
+    if (availables.length==0)
+        return null;
+    // console.log(availables)
     let arbitraryIndex = getRandomArbitrary(0, availables.length);
-
     let nextElement = availables[arbitraryIndex];
  
+    if (nextElement)
+        nextElement.textGuess = '';
+
     return nextElement;
 }
 
@@ -36,6 +30,7 @@ const getData = () => {
             id: element.id
             , name:element.name
             , list: getListFromId(element.id)
+            , currentStatus: 0
         }
         output.push(group);
     });
@@ -45,11 +40,15 @@ const getData = () => {
 }
 
 const totalizator = (group) => {
-    return { ... group, total:group.list.length, learned:0, revealed:0, discovered:0, recognized:0, unknowed: group.list.length}
+    return { ... group, total:group.list.length, learned:0, revealed:0, discovered:0, recalled:0, recognized:0, unknowed: group.list.length}
 }
 
 const getListFromId = (id) => {
     let items = require(`../data/db.${id}`);
+    items.forEach(_=>{
+        _.covered = true;
+        _.Status = STATUS.unknowed
+    })
 
     return items;
 }

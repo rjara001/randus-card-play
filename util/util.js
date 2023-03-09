@@ -2,6 +2,7 @@
 
 import STATUS from './constants';
 
+
 const updateItemGroup = (group, setData)=> {
 
     setData((prev) => {
@@ -19,9 +20,5 @@ const getStatusCode = (status)  => {
     return STATUS.find(_=>_==status);
 }
 
-const getStatusText = (index) => {
-    return STATUS[index];
-}
-
 export 
-    {updateItemGroup, getStatusCode, getStatusText}
+    { updateItemGroup, getStatusCode }

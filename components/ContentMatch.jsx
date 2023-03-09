@@ -1,21 +1,23 @@
 
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { Text, StyleSheet, TextInput, Button } from 'react-native'
 import { View } from 'react-native-web';
+import { DataContext } from './Context/DataContext';
 
-const ContentMatch = ({word, handleChangeItem})=> {
-    let originalStatus = word.Status;
+const ContentMatch = ({word, message, handleChangeItem})=> {
     return <View>
     <Text>{word.TextA}</Text>
     <View>
-        <TextInput value={word.TextB} secureTextEntry={word.Status == originalStatus}/></View>
+        
+        <TextInput value={word.TextB} secureTextEntry={word.covered}/></View>
         <TextInput
                 style={styles.input}
                 value={word.textGuess}
-                onChange={(e)=> handleChangeItem((prev)=>({ ...prev, textGuess: e.target.value}))}
+                onChange={(e)=> handleChangeItem(e.target.value)}
                 placeholder="write the match sentence or word"
             />
-    <Text>{word.message}</Text></View>
+    <Text>{message}</Text>
+    </View>
 }
 
 const styles = StyleSheet.create({

@@ -1,0 +1,9 @@
+1.- Un grupo de palabras es una lista de menos de 200 palabras
+2.- Una palabra es un objeto o par de TextA, TextB
+3.- Tenemos tantos grupos de palabras como queremas
+4.- Cada palabra tiene un estado, los cuales son los siguiemts:
+
+ - revelead
+ - discovered
+ - recognized
+ - learned

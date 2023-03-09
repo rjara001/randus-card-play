@@ -1,10 +1,18 @@
-const STATUS = [
-    'unknowed'
-    , 'revealed'
-    , 'discovered'
+const STATUS = {
+    unknowed: 0
+    , revealed:1
+    , discovery:2
+    , recognized:3
+    , learned:4
+    , historified: 5
+}
+
+const MAPSTATGE = [
+    'learned'
+    , 'discovery'
     , 'recognized'
     , 'learned'
-    , 'historified'
+
 ]
 
-export default STATUS;
+export {STATUS, MAPSTATGE};
